@@ -1,0 +1,64 @@
+
+1.  User Model :
+   -  Fields :
+     - `username`: Represents the username of the user. It's required.
+     - `email`: Represents the email of the user. It's required.
+     - `password`: Represents the hashed password of the user. It's required.
+     - `role`: Represents the role of the user (e.g., citizen or admin). It's required and restricted to predefined values.
+     - `registrationDate`: Represents the date when the user registered. It defaults to the current date.
+   -  Connections :
+     - The `User` model serves as the base for all user-related operations.
+     - Other models (such as `Suggestion`, `Comment`, `Feedback`, `AdminActionLog`, and `Notification`) reference the `User` model to establish relationships with users.
+
+2.  Suggestion/Petition Model :
+   -  Fields :
+     - `title`: Represents the title of the suggestion/petition. It's required.
+     - `description`: Represents the description of the suggestion/petition. It's required.
+     - `status`: Represents the status of the suggestion/petition (e.g., pending, approved, rejected). It defaults to 'pending'.
+     - `creator`: Represents the user who created the suggestion/petition. It references the `User` model.
+     - `creationDate`: Represents the date when the suggestion/petition was created. It defaults to the current date.
+     - `lastUpdatedDate`: Represents the date when the suggestion/petition was last updated. It defaults to the current date.
+     - `votes`: Represents an array of users who voted for the suggestion/petition. It references the `User` model.
+   -  Connections :
+     - Each suggestion/petition is associated with a single user who created it (`creator` field).
+     - Comments and feedback related to a suggestion/petition reference this model to establish relationships.
+
+3.  Comment Model :
+   -  Fields :
+     - `content`: Represents the content of the comment. It's required.
+     - `commenter`: Represents the user who posted the comment. It references the `User` model.
+     - `suggestion`: Represents the suggestion/petition to which the comment belongs. It references the `Suggestion` model.
+     - `creationDate`: Represents the date when the comment was posted. It defaults to the current date.
+   -  Connections :
+     - Each comment is associated with a single user who posted it (`commenter` field) and a single suggestion/petition to which it belongs (`suggestion` field).
+
+4.  Feedback Model :
+   -  Fields :
+     - `rating`: Represents the rating given in the feedback (e.g., 1-5 stars). It's required.
+     - `comment`: Represents additional comments provided in the feedback.
+     - `feedbackProvider`: Represents the user who provided the feedback. It references the `User` model.
+     - `suggestion`: Represents the suggestion/petition for which the feedback is provided. It references the `Suggestion` model.
+     - `creationDate`: Represents the date when the feedback was provided. It defaults to the current date.
+   -  Connections :
+     - Each feedback entry is associated with a single user who provided it (`feedbackProvider` field) and a single suggestion/petition for which it was given (`suggestion` field).
+
+5.  Admin Action Log Model :
+   -  Fields :
+     - `action`: Represents the action performed by the admin (e.g., marking a suggestion for review, updating status, responding to a complaint). It's required.
+     - `description`: Represents additional information or description about the action.
+     - `admin`: Represents the admin who performed the action. It references the `User` model.
+     - `timestamp`: Represents the timestamp when the action was performed. It defaults to the current date.
+   -  Connections :
+     - Each admin action log entry is associated with a single admin who performed the action (`admin` field).
+
+6.  Notification Model :
+   -  Fields :
+     - `content`: Represents the content of the notification. It's required.
+     - `type`: Represents the type of notification (e.g., email, in-app). It's required.
+     - `recipient`: Represents the user who receives the notification. It references the `User` model.
+     - `creationDate`: Represents the date when the notification was created. It defaults to the current date.
+     - `seen`: Represents whether the notification has been viewed by the recipient. It defaults to `false`.
+   -  Connections :
+     - Each notification is associated with a single user who receives it (`recipient` field).
+
+These models and their fields provide a structured way to represent the data in your City Administrative System (CAS) and establish relationships between different entities in the system.
