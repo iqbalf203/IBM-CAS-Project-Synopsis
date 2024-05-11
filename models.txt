@@ -1,3 +1,32 @@
+User Model:
+- create user: Method to add a new user to the system.
+- update: Method to modify user information, such as name, email, etc.
+- get: Method to retrieve a list of all users.
+- getById: Method to fetch a user by their unique identifier.
+- getByName: Method to find a user by their username.
+
+Complaint Model:
+- create complaint: Method to submit a new complaint to the system.
+- get: Method to retrieve all complaints stored in the system.
+- update: Method to edit an existing complaint.
+- getComplaintByCreatorId: Method to fetch complaints created by a specific user Id.
+
+Suggestion Model:
+- create suggestion: Method to submit a new suggestion to the system.
+- get: Method to retrieve all suggestions stored in the system.
+- update: Method to edit an existing suggestion.
+- getSuggestionByCreatorId: Method to fetch suggestions created by a specific user Id.
+
+Comment Model:
+- add: Method to add a new comment to a complaint or suggestion.
+- delete: Method to remove a comment from a complaint or suggestion.
+- getByCommentBySuggestionId: Method to fetch comments created by a specific user Id.
+
+
+
+
+============================================================
+
 uer model:
 create user
 update
