@@ -1,0 +1,27 @@
+uer model:
+create user
+update
+get
+getbyid
+getbyname 
+
+ complint model:
+create complint
+get
+update
+getcomplaintbycreatername
+getcomplaintbycreatefeild
+
+
+suggetion model:
+create complint
+get
+update
+getcomplaintbycreatername
+getcomplaintbycreatefeild
+
+comment model:
+add
+delete
+//feedback model
+//notification model
