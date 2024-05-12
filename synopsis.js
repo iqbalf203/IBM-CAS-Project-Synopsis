@@ -22,10 +22,23 @@ module.exports = User;
 
 const mongoose = require('mongoose');
 
+const complaintTypes = ['Noise', 'Road Maintenance', 'Waste Management', 'Public Safety', 'Infrastructure', 'Environmental', 'Building Code', 'Traffic'];
+
 const complaintSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  status: { type: String, enum: ['pending', 'resolved', 'dismissed'], default: 'pending' },
+  status: { 
+    type: String, 
+    enum: ['open', 'in progress', 'resolved', 'dismissed'], 
+    default: 'open'
+  },
+  address: { type: String, required: true }, // You can change the type to match your needs
+  complaintType: { 
+    type: String, 
+    enum: complaintTypes, // Use the complaintTypes enum for complaintType field
+    required: true 
+  },
+
   creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   creationDate: { type: Date, default: Date.now },
   lastUpdatedDate: { type: Date, default: Date.now }
